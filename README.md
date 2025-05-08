@@ -1,2 +1,2 @@
-# Chameleondetection_GW
+# Chameleondetection
 the code for detecting Chameleon dark energy
