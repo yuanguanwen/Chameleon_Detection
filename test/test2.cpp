@@ -1,9 +1,13 @@
 #include "utils.h"
 
+#include <iostream>
+#include <vector>
+#include <tuple>
+
 using namespace std;
 
 // solar parameters
-double B0 = 3e3 * T2eV;                     // radiative zone max B [eV2]  200*T2eV;
+double B0 = 3000 * T2eV;                    // radiative zone max B [eV2]  200*T2eV;
 double B1 = 50 * T2eV;                      // tachocline max B [eV2]  4*T2eV;//
 double B2 = 3 * T2eV;                       // outer region max B [eV2]  3*T2eV;//
 double r0 = 0.712 * rSolar;                 // [eV-1]
@@ -100,9 +104,20 @@ double Bfield(int c)
     }
 }
 
+struct GResult
+{
+    double Gamma;
+    double g1;
+    double g2;
+    int indexT1;
+    int indexX1;
+    int indexT2;
+    int indexX2;
+};
+
 // selects Gaunt factor from matrix for Gamma
 // returns Gamma [eV]
-double selectG(int c, double w)
+GResult selectG(int c, double w)
 {
     // select g(w, T) value from matrix
     int indexT1;
@@ -133,7 +148,8 @@ double selectG(int c, double w)
     }
     double g1 = z1[indexT1][indexX1];
     double g2 = z2[indexT2][indexX2];
-    return GammaPhoton(w, c, g1, g2);
+    double Gamma = GammaPhoton(w, c, g1, g2);
+    return {Gamma, g1, g2, indexT1, indexX1, indexT2, indexX2}; // std::make_tuple(gamma, g1, g2);
 }
 
 // differential scalar production rate d2N/dr/dw times Lambda2
@@ -159,8 +175,12 @@ double B_integrand(int c, double Bm, double w)
     double kgamma = sqrt(w * w - mg2); // photon momentum [eV]
     double kphi = sqrt(w * w - ms2);   // scalar momentum [eV]
     double B = Bfield(c);              // solar B field [eV2]
-    double G = selectG(c, w);
 
+    GResult g = selectG(c, w);
+    double G = g.Gamma;
+    // std::tie(G, g1, g2) = selectG(c, w); // Unpack the tuple
+    // std::tuple<double, double, double> selectG(c, w);
+    // auto [G, g1, g2] = selectG(c, w);                                                                                                                   // Cleaner and safer
     return 2 / (pi * Mpl * Mpl) * pow(r[c], 2) * B * B * w * pow(w * w - ms2, 3 / 2) / (pow(ms2 - mg2, 2) + (w * w * G * G)) * G / (exp(w / T[c]) - 1); // [eV Bg-2]
 }
 
@@ -187,7 +207,7 @@ double B_solarIntg(double w, double Bm)
         }
         total += 0.5 * (r[c + 1] - r[c]) * (B_integrand(c + 1, Bm, w) + B_integrand(c, Bm, w));
     }
-    return total;
+    return total * 1e3 / s2eV;
 }
 
 // integral I(u,v) solved analytically in cross section calc
@@ -285,10 +305,50 @@ void spectrum(char option)
     }
     else if (option == 'B')
     {
-        name = "B_spectrum_1e2.dat";
+        name = "B_spectrum_1e2_low.dat";
     }
 
     write2D(name, energy, count);
+}
+
+// Assume the following functions are defined elsewhere and return appropriate types:
+// double mCham2(int c, double Bm);
+// double Bsolar(int c);
+// double selectG(int c, double w);  // or a tuple-like return if g1/g2 needed
+// double B_integrand(int c, double w, double Bm);
+// double B_solarIntg(double w, double Bm);
+
+void test_spectrum_debug(double Bm)
+{
+    vector<int> c_test_vals = {5, 50, 500, 1500};
+    double w_test = 1000.0; // energy test in eV
+
+    for (int c_test : c_test_vals)
+    {
+        cout << "mass [eV] = " << mCham2(c_test, Bm) << endl;
+        cout << "Bsolar [eV] = " << Bfield(c_test) << endl;
+
+        // Assuming selectG returns just Gamma, not individual g1/g2.
+        // If it returns a struct/tuple of g1, g2, adjust accordingly.
+        GResult g = selectG(c_test, w_test);
+        cout << "GammaPhoton/g1/g2 = " << g.Gamma << ";" << g.g1 << ";" << g.g2 << endl;
+        cout << "g1[x, y] = " << g.g1 << ";" << g.indexT1 << ";" << g.indexX1 << endl;
+        cout << "g2[x, y] = " << g.g2 << ";" << g.indexT2 << ";" << g.indexX2 << endl;
+
+        double kernel = B_integrand(c_test, w_test, Bm);
+        cout << "kernel = " << kernel << endl;
+
+        double spectrum = B_solarIntg(w_test, Bm);
+        cout << "spectrum = " << spectrum << endl;
+
+        // cout << "z1[164][310] = " << z1[164][310] << endl;
+        // cout << "z1[510][510] = " << z1[500][500] << endl;
+        // size_t numRows = z1.size();
+        // size_t numCols = (numRows > 0) ? z1[0].size() : 0;
+        // cout << "Shape: " << numRows << ", " << numCols << endl;
+
+        cout << "===================================" << endl;
+    }
 }
 
 int main()
@@ -303,7 +363,11 @@ int main()
         z2[0][i] = z2[0][i] * me;
     }
 
-    spectrum('T');
+    // saveGaunt(z1, "z1_saved.dat");
+    // saveGaunt(z2, "z2_saved.dat");
+
+    // spectrum('B');
+    test_spectrum_debug(100.0);
     // spectrum_ring();
     return 0;
 }
