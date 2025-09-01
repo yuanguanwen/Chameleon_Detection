@@ -6,17 +6,17 @@ Our study incorporates both the Sun’s magnetic field profile and Primakoff pro
 ## Analysis Pipeline
 The workflow for detecting solar-induced chameleon dark energy is organized as follows:
 
-### solarmodel.ipynb \
+### solarmodel.ipynb 
 Implements the AGSS09 solar model.
 
-### detectormodel.ipynb \
+### detectormodel.ipynb 
 Encodes XENONnT’s efficiency, resolution, and dataset.
 
-### chameleonmodel.ipynb \
+### chameleonmodel.ipynb 
 Computes Primakoff and bulk magnetic field production channels, together with their event rates.
 
-### mcmc.py \
+### mcmc.py 
 Integrates the chameleon model with XENONnT data and runs Bayesian inference using the emcee package. Posterior samples are saved in .npz format.
 
-### posterior_analysis.ipynb \
-Uses GetDist to visualize posteriors and generate corner plots.
+### posterior_analysis.ipynb 
+Uses \texttt{GetDist} to visualize posteriors and generate corner plots.
