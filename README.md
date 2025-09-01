@@ -12,10 +12,10 @@ Implements the AGSS09 solar model.
 ### detectormodel.ipynb 
 Encodes XENONnT’s efficiency, resolution, and dataset.
 
-### XENONnT.ipynb 
+### XENONnT.py 
 Computes Primakoff and bulk magnetic field production channels, together with their fixed parameters' event rates in XENONnT.
 
-### mcmc.py 
+### XENONnT_mcmc.py 
 Integrates the chameleon model with XENONnT data and runs Bayesian inference using the ${emcee}$ package. Posterior samples are saved in .npz format.
 
 ### posterior_analysis.ipynb 
