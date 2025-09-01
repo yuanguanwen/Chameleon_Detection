@@ -19,4 +19,4 @@ Computes Primakoff and bulk magnetic field production channels, together with th
 Integrates the chameleon model with XENONnT data and runs Bayesian inference using the emcee package. Posterior samples are saved in .npz format.
 
 ### posterior_analysis.ipynb 
-Uses \texttt{GetDist} to visualize posteriors and generate corner plots.
+Uses $\texttt{GetDist}$ to visualize posteriors and generate corner plots.
