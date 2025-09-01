@@ -16,7 +16,7 @@ Encodes XENONnT’s efficiency, resolution, and dataset.
 Computes Primakoff and bulk magnetic field production channels, together with their event rates.
 
 ### mcmc.py 
-Integrates the chameleon model with XENONnT data and runs Bayesian inference using the emcee package. Posterior samples are saved in .npz format.
+Integrates the chameleon model with XENONnT data and runs Bayesian inference using the $\emph{emcee}$ package. Posterior samples are saved in .npz format.
 
 ### posterior_analysis.ipynb 
-Uses $\texttt{GetDist}$ to visualize posteriors and generate corner plots.
+Uses $\emph{GetDist}$ to visualize posteriors and generate corner plots.
