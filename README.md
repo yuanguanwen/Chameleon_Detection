@@ -9,10 +9,7 @@ The analysis pipeline for detecting solar-induced chameleon dark energy is organ
 ### solarmodel.ipynb 
 Implements the AGSS09 model and the magnetic field.
 
-### detectormodel.ipynb 
-Encodes XENONnT’s efficiency, resolution, and dataset.
-
-### XENONnT.py 
+### solar_chameleon.py 
 Computes primakoff production and magnetic conversion spectrum.
 
 ### XENONnT_mcmc.py 
