@@ -5,16 +5,16 @@ Our work reassesses the detection prospects of chameleon dark energy using exist
 The analysis pipeline for detecting solar chameleons is organized as follows:
 
 ### solarmodel.ipynb 
-*Implements the AGSS09 solar model, including temperature, density, and composition profiles. 
-*Define the solar magnetic field configuration used for magnetic conversion.
+* Implements the AGSS09 solar model, including temperature, density, and composition profiles.
+* Define the solar magnetic field configuration used for magnetic conversion.
 
 ### solar_chameleon.py 
-Compute the solar chameleon production rate and resulting flux at Earth. 
-Includes both Primakoff production and magnetic conversion contribution.
+* Compute the solar chameleon production rate and resulting flux at Earth. 
+* Includes both Primakoff production and magnetic conversion contribution.
 
 ### XENONnT_mcmc.py 
-Integrates the solar chameleon model with XENONnT electron recoil data and Performs Bayesian inference using the ${emcee}$ package. \\
-Posterior samples are saved in .npz format for further analysis or plotting.
+* Integrates the solar chameleon model with XENONnT electron recoil data and Performs Bayesian inference using the ${emcee}$ package. \\
+* Posterior samples are saved in .npz format for further analysis or plotting.
 
 If you use this code or results in your work, please cite:
 
