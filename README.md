@@ -2,16 +2,14 @@
 This repository contains the analysis framework developed for the study “Direct detection of solar chameleons with electron recoil data from XENONnT.”
 Our work reassesses the detection prospects of chameleon dark energy using existing dark matter direct detection experiments, with a focus on the XENONnT detector.
 
-
-
 The analysis pipeline for detecting solar chameleons is organized as follows:
 
 ### solarmodel.ipynb 
-Implements the AGSS09 solar model, including temperature, density, and composition profiles. \\
-Define the solar magnetic field configuration used for magnetic conversion.
+*Implements the AGSS09 solar model, including temperature, density, and composition profiles. 
+*Define the solar magnetic field configuration used for magnetic conversion.
 
 ### solar_chameleon.py 
-Compute the solar chameleon production rate and resulting flux at Earth. \\
+Compute the solar chameleon production rate and resulting flux at Earth. 
 Includes both Primakoff production and magnetic conversion contribution.
 
 ### XENONnT_mcmc.py 
