@@ -12,7 +12,7 @@ The analysis pipeline for detecting solar chameleons is organized as follows:
 * Includes both Primakoff production and magnetic conversion contribution.
 
 ### XENONnT_mcmc.py 
-* Integrates the solar chameleon model with XENONnT electron recoil data and Performs Bayesian inference using the ${emcee}$ package. \\
+* Integrates the solar chameleon model with XENONnT electron recoil data and Performs Bayesian inference using the ${emcee}$ package. 
 * Posterior samples are saved in .npz format for further analysis or plotting.
 
 If you use this code or results in your work, please cite:
