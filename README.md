@@ -16,6 +16,7 @@ The analysis pipeline for detecting solar chameleons is organized as follows:
 * Posterior samples are saved in .npz format for further analysis or plotting.
 
 If you use this code or results in your work, please cite:
+
 @article{Vagnozzi:2021quy,
     author = "Vagnozzi, Sunny and Visinelli, Luca and Brax, Philippe and Davis, Anne-Christine and Sakstein, Jeremy",
     title = "{Direct detection of dark energy: The XENON1T excess and future prospects}",
