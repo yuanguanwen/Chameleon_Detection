@@ -17,5 +17,5 @@ The analysis pipeline for detecting solar chameleons is organized as follows:
 
 If you use this code, please cite the associated paper:
 > S. Vagnozzi, L. Visinelli,  P. Brax, A.-C. Davis & J. Sakstein, "*Direct detection of dark energy: the XENON1T excess and future prospects*", [Phys.Rev.D 104 (2021) 6, 063023](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.104.063023) [arXiv:2103.15834](https://arxiv.org/abs/2103.15834)
-> T. O'Shea, A.-C. Davis, M. Giannotti, S. Vagnozzi, L. Visinelli & J. K. Vogel,  "*Solar chameleons: Novel channels*", [Phys. Rev. D 110 (2024) 6, 063027](https://doi.org/10.1103/PhysRevD.110.063027)  
-[arXiv:2406.01691](https://arxiv.org/abs/2406.01691)
+
+> T. O'Shea, A.-C. Davis, M. Giannotti, S. Vagnozzi, L. Visinelli & J. K. Vogel,  "*Solar chameleons: Novel channels*", [Phys. Rev. D 110 (2024) 6, 063027](https://doi.org/10.1103/PhysRevD.110.063027) [arXiv:2406.01691](https://arxiv.org/abs/2406.01691)
